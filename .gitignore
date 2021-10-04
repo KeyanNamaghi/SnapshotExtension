@@ -1,0 +1,7 @@
+.vscode
+json
+manifest_featureflags.json
+popup.html
+popup.js
+renderjson.js
+styles.css
