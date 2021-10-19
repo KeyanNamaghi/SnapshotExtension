@@ -65,12 +65,8 @@ chrome.browserAction.onClicked.addListener(function () {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tab) {
     if (tab[0].url.includes('checkout')) {
       getSnapshot()
-    } else if (tab[0].url.includes('confirmation')) {
-      getOrder()
     } else {
-      chrome.tabs.create({
-        url: 'https://media.giphy.com/media/ji6zzUZwNIuLS/giphy.gif?cid=ecf05e47xmmukjdmwahuqizbjq5r73vmxiys1xbfz9346exs&rid=giphy.gif&ct=g'
-      })
+      getOrder()
     }
   })
 })
