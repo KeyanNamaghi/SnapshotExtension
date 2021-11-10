@@ -18,7 +18,7 @@ const getOrder = () => {
 
     const matchArray = pageUrl.match(regex)
     const domain = pageUrl.split('/')[2]
-    const id = pageUrl.split('/')[5]
+    const id = pageUrl.split('/')[4]
 
     if (!matchArray) {
       handleError()
