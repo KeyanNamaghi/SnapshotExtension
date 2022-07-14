@@ -111,14 +111,14 @@ chrome.contextMenus.create({
       expirationDate: new Date().getTime() / 1000 + 3600
     })
   },
-  documentUrlPatterns: checkoutDocumentUrlPatterns
+  documentUrlPatterns: ['https://uat2.test-arg-uk.com/*']
 })
 
 chrome.contextMenus.create({
   title: '-----------------------------------------',
   contexts: ['all'],
   onclick: () => console.log(''),
-  documentUrlPatterns: checkoutDocumentUrlPatterns
+  documentUrlPatterns: ['https://uat2.test-arg-uk.com/*']
 })
 
 chrome.contextMenus.create({
