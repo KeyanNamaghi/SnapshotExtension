@@ -29,18 +29,6 @@ const getOrder = () => {
   })
 }
 
-chrome.contextMenus.create({
-  title: '_Open Get Order 🧾',
-  contexts: ['all'],
-  onclick: getOrder,
-  documentUrlPatterns: [
-    'http://localhost/confirmation/*',
-    'http://ui-payment-stub.service.eu-west-1.dev.deveng.systems/confirmation/*',
-    'https://uat2.test-arg-uk.com/confirmation/*',
-    'https://www.argos.co.uk/confirmation/*'
-  ]
-})
-
 const endpointBuilder = (tab) => {
   const pageUrl = tab[0].url
   const regex = /([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/g
@@ -112,6 +100,40 @@ const getWallet = () => {
 }
 
 chrome.contextMenus.create({
+  title: 'Enable new small items home delivery 🚚',
+  contexts: ['all'],
+  // document.cookie = 'Checkout_Test_Group_2=NEW_HD|NEW_HD_SI;path=/'
+  onclick: () => {
+    chrome.cookies.set({
+      url: 'https://uat2.test-arg-uk.com/',
+      name: 'Checkout_Test_Group_2',
+      value: 'NEW_HD|NEW_HD_SI',
+      expirationDate: new Date().getTime() / 1000 + 3600
+    })
+  },
+  documentUrlPatterns: checkoutDocumentUrlPatterns
+})
+
+chrome.contextMenus.create({
+  title: '-----------------------------------------',
+  contexts: ['all'],
+  onclick: () => console.log(''),
+  documentUrlPatterns: checkoutDocumentUrlPatterns
+})
+
+chrome.contextMenus.create({
+  title: 'Open Get Order 🧾',
+  contexts: ['all'],
+  onclick: getOrder,
+  documentUrlPatterns: [
+    'http://localhost/confirmation/*',
+    'http://ui-payment-stub.service.eu-west-1.dev.deveng.systems/confirmation/*',
+    'https://uat2.test-arg-uk.com/confirmation/*',
+    'https://www.argos.co.uk/confirmation/*'
+  ]
+})
+
+chrome.contextMenus.create({
   title: 'Open Snapshot 📸',
   contexts: ['all'],
   onclick: getSnapshot,
@@ -155,3 +177,14 @@ chrome.browserAction.onClicked.addListener(function () {
     }
   })
 })
+
+// const alt =
+//   'data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAACfPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/9qon//v7+//9uro/58/MP+fPzD/nz8w/58/MP/Aa1z/7+/v/9qon/+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/9uro/+/v7//aqJ//nz8w/58/MP+fPzD/wGtc/+/v7//aqJ//nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/9qon//v7+//7+/v//bq6P/s6u//7Orv/+/v7//v7+//2qif/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/9uro/+/v7//26uj/9uro//bq6P/26uj/7+/v/9qon/+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/8BrXP/v7+//9uro/58/MP+fPzD/wGtc/+/v7//aqJ//nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/2qif/+/v7//26uj/nz8w/8BrXP/v7+//2qif/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP/26uj/7+/v/8BrXP/Aa1z/7+/v/9qon/+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/wGtc/+/v7//26uj/2qif/+/v7//aqJ//nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP/Aa1z/7+/v/+/v7//v7+//2qif/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/9qon//v7+//7+/v/9qon/+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/wGtc/8BrXP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/nz8w/58/MP+fPzD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=='
+
+// chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
+//   if (changeInfo.status === 'complete') {
+//     chrome.tabs.executeScript(tabId, {
+//       code: `document.querySelector(\'link[rel*="icon"]\').href = "${alt}"`
+//     })
+//   }
+// })

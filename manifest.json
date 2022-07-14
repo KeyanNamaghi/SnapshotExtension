@@ -9,7 +9,7 @@
   "icons": {
     "16": "logo.png"
   },
-  "permissions": ["activeTab", "contextMenus", "http://localhost/*", "http://ui-payment-stub.service.eu-west-1.dev.deveng.systems/checkout/*", "https://uat2.test-arg-uk.com/checkout/*", "https://www.argos.co.uk/checkout/*"],
+  "permissions": ["activeTab", "contextMenus", "cookies", "http://localhost/*", "http://ui-payment-stub.service.eu-west-1.dev.deveng.systems/checkout/*", "https://uat2.test-arg-uk.com/checkout/*", "https://www.argos.co.uk/checkout/*"],
   "background": {
     "scripts": ["main.js"]
   }

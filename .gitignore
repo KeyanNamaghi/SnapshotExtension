@@ -5,3 +5,5 @@ popup.html
 popup.js
 renderjson.js
 styles.css
+
+.DS_Store
